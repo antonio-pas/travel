@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+/*
+* -----
+* RESET
+* -----
+*/
+
+body,
+html,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+html {
+  line-height: 1.35;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+* -----
+* THEME
+* -----
+*/
+* {
+  transition-duration: 0.2s;
+}
+.light {
+  --base: 213 22% 95%;
+  --text: 205 43% 12%;
+  --prim: 210 75% 25%;
+}
+.dark {
+  --base: 213 40% 5%;
+  --text: 205 23% 81%;
+  --prim: 210 80% 83%;
+}
+.light, .dark {
+  /* text */
+  --fg-op: 0.7;
+  --fg-bold-op: 0.94;
+
+  --fg: hsla(var(--text) / var(--fg-op));
+  --fg-bold: hsla(var(--text) / var(--fg-bold-op));
+
+  --link-op: 0.7;
+  --link-hover-op: 1.0;
+
+  --link: hsla(var(--text) / var(--link-op));
+  --link-hover: hsla(var(--text) / var(--link-hover-op));
+
+  --heading-op: 0.98;
+  --heading: hsla(var(--text) / var(--heading-op));
+
+  /* surfaces */
+  --bg1-op: 0.03;
+  --bg2-op: 0.05;
+  --bg3-op: 0.07;
+
+  --bg0: hsl(var(--base));
+  --bg1: hsla(var(--text) / var(--bg1-op));
+  --bg2: hsla(var(--text) / var(--bg2-op));
+  --bg3: hsla(var(--text) / var(--bg3-op));
+
+  /* borders */
+  --border-op: 0.6;
+
+  --border: hsla(var(--text) / var(--border-op));
+
+  /* primary */
+  --primary: hsl(var(--prim));
+
+  --primary-hover: color-mix(in srgb, var(--primary), var(--bg0) 25%);
+  --primary-active: color-mix(in srgb, var(--primary), var(--bg0) 35%);
+
+  /* gaps and spacing */
+  --gap-1: 1rem;
+  --gap-2: 2rem;
+  --gap-3: 4rem;
+  --gap-4: 8rem;
+
+  --p-1: 0.25rem;
+  --p-2: 0.5rem;
+  --p-3: 0.8rem;
+  --p-4: 1.2rem;
+  --p-5: 2rem;
+  --p-6: 3rem;
+  --p-7: 4rem;
+  --p-8: 6rem;
+
+  --br-1: 0.25rem;
+  --br-2: 0.5rem;
+  --br-3: 1rem;
+}
+body {
+  color: var(--fg);
+  background-color: var(--bg0);
+}
+
+/*
+* ------
+* COMMON
+* ------
+*/
+a {
+  text-decoration: none;
+  color: var(--link);
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+/*
+* ------
+* LAYOUT
+* ------
+*/
+
+.main-container {
+  display: flex;
+  flex-flow: column;
+  .image-bg {
+    background-image: linear-gradient(hsla(var(--base) / 0.8), hsla(var(--base) / 0.8)), url("/images/bridge.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: max(600px, 80svh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    nav {
+      padding: 1rem max(2rem, 5vw);
+      align-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 5rem;
+
+      a, img {
+        height: 100%;
+      }
+
+      ul {
+        display: flex;
+        gap: var(--gap-2);
+      }
+    }
+    header {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--gap-2);
+      max-width: 80vw;
+      h1 {
+        text-align: center;
+        font-size: clamp(3rem, 6vw, 6rem);
+        line-height: 1.0;
+        letter-spacing: -1.5px;
+        font-weight: 900;
+        color: var(--heading);
+      }
+      p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        text-align: center;
+        max-width: 60ch;
+      }
+      a {
+        border-radius: var(--br-1);
+        color: var(--bg0);
+        font-weight: 600;
+        background-color: var(--primary);
+        padding: var(--p-2) var(--p-3);
+      }
+      a:hover {
+        background-color: var(--primary-hover);
+      }
+      a:active {
+        background-color: var(--primary-active);
+      }
+    }
+  }
+  main {
+    .stats {
+      padding: var(--p-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: var(--bg1);
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        span:first-child {
+          color: var(--heading);
+          font-weight: 600;
+          font-size: clamp(1.2rem, 3.3vw, 2.7rem);
+        }
+      }
+    }
+  }
+}
+
+/*
+* -----
+* MEDIA
+* -----
+*/
+.light {
+  .logo-dark-mode {
+    display: none;
+  }
+  .logo-light-mode {
+    display: block;
+  }
+}
+.dark {
+  .logo-dark-mode {
+    display: block;
+  }
+  .logo-light-mode {
+    display: none;
+  }
+}
+
